@@ -34,7 +34,8 @@ function processMenu() {
       title: 'Github',
       href: 'https://github.com/Voynitskiy',
       icon: 'GithubIcon',
-  })
+    })
+  }
   chainMenus.push({
     title: 'Twitter',
     href: 'https://twitter.com/Voynitskiy',
