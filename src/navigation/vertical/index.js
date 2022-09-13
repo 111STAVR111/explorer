@@ -31,15 +31,9 @@ function processMenu() {
     })
   } else {
     chainMenus.push({
-      title: 'Testnet Explorer',
-      href: 'http://testnet.ping.pub',
-      icon: 'LifeBuoyIcon',
-    })
-  }
-  chainMenus.push({
-    title: 'Github',
-    href: 'https://github.com/Voynitskiy',
-    icon: 'GithubIcon',
+      title: 'Github',
+      href: 'https://github.com/Voynitskiy',
+      icon: 'GithubIcon',
   })
   chainMenus.push({
     title: 'Twitter',
