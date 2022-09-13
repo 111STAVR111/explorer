@@ -25,16 +25,11 @@ function processMenu() {
   chainMenus.push({ header: 'LINKS' })
   if (isTestnet()) {
     chainMenus.push({
-      title: 'Mainnet Explorer',
-      href: 'https://ping.pub',
-      icon: 'ChromeIcon',
-    })
-  } else {
-    chainMenus.push({
       title: 'Github',
       href: 'https://github.com/Voynitskiy',
       icon: 'GithubIcon',
     })
+  } else {
   }
   chainMenus.push({
     title: 'Twitter',
