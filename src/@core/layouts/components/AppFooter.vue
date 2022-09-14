@@ -6,7 +6,7 @@
         class="ml-25 font-weight-bolder"
         href="#"
         target="_blank"
-      >AlxVoy</b-link>
+      >Ping.pub</b-link>
     </span>
 
     <router-link
