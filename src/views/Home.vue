@@ -127,7 +127,6 @@ import store from '@/store/index'
 import { timeIn, toDay, getLocalChains } from '@/libs/utils'
 import AppFooter from '@/@core/layouts/components/AppFooter.vue'
 import FullHeader from './components/FullHeader.vue'
-
 export default {
   components: {
     BLink,
