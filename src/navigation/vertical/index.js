@@ -19,7 +19,7 @@ function processMenu() {
       title: 'blockchains',
       children: blockchains,
       tag: `${blockchains.length}`,
-      icon: 'https://ping.pub/logo.svg',
+      icon: 'https://explorer.voynitskiy.com/logo.svg',
     })
   }
   chainMenus.push({ header: 'LINKS' })
