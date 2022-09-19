@@ -3,7 +3,6 @@
     <full-header />
     <b-link>
       <div class="d-flex justify-content-center align-items-center">
-        <vuexy-logo />
         <h1
           class="text-primary display-4 font-weight-bolder d-none d-md-block"
         >
@@ -12,9 +11,6 @@
       </div>
     </b-link>
 
-    <p class="mb-1">
-      
-    </p>
     <h2 class="mb-3">
       Cosmos Ecosystem Blockchains 🚀
     </h2>
