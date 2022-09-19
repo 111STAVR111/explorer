@@ -308,14 +308,15 @@ export default {
   },
   computed: {
     pingVals() {
-      return this.list.filter(x => x.description.identity === '6783E9F948541962')
+      return this.list.filter(x => x.description.identity === 'F2F91999ECCC092F')
     },
     list() {
       const tab = this.selectedStatus === 'active' ? this.validators : this.inactiveValidators
       return tab.map(x => {
         const xh = x
         if (Object.keys(this.latestPower).length > 0 && Object.keys(this.previousPower).length > 0) {
-          const latest = this.latestPower[x.consensus_pubkey.key] || 0
+          const latest = this.latestPower[x.consensus_pubkey.key]  0
+          const previous = this.previousPower[x.consensus_pubkey.key]  0
           xh.changes = latest - previous
         }
         return xh
