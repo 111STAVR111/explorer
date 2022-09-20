@@ -9,7 +9,7 @@
     width="50px"
     height="50px"
     viewBox="0 0 50 50"
-    enable-background="new 0 0 50 50"
+    enable-background="new 0 0 150 150"
     xml:space="preserve"
   >  <image
     id="image0"
