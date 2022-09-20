@@ -3,6 +3,7 @@
     <full-header />
     <b-link>
       <div class="d-flex justify-content-center align-items-center">
+        <vuexy-logo />
         <h1
           class="text-primary display-4 font-weight-bolder d-none d-md-block"
         >
