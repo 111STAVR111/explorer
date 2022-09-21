@@ -1,0 +1,19 @@
+{
+    "chain_name": "Galaxy",
+    "coingecko": "",
+    "api": ["https://galaxy.anode.team"],
+    "rpc": ["*"],
+    "snapshot_provider": "",
+    "sdk_version": "0.44.5",
+    "coin_type": "118",
+    "min_tx_fee": "200",
+    "addr_prefix": "galaxy",
+    "logo": "/logos/galaxy.png",
+    "assets": [{
+        "base": "uglx",
+        "symbol": "GLX",
+        "exponent": "6",
+        "coingecko_id": "",
+        "logo": "/logos/galaxy.png"
+    }]
+}
