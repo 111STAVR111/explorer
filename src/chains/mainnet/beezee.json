@@ -1,0 +1,20 @@
+{
+  "chain_name": "BeeZee",
+  "api": "https://rest.getbze.com",
+  "rpc": "http://beezee.voynitskiy.com:29577",
+  "snapshot_provider": "",
+  "sdk_version": "0.45.4",
+  "coin_type": "118",
+  "min_tx_fee": "200",
+  "addr_prefix": "bze",
+  "logo": "/logos/bze.png",
+  "assets": [
+    {
+      "base": "ubze",
+      "symbol": "BZE",
+      "exponent": "6",
+      "coingecko_id": "bzedge",
+      "logo": "/logos/bze.png"
+    }
+  ]
+}
