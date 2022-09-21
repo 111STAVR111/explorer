@@ -1,0 +1,19 @@
+{
+    "chain_name": "Konstellation",
+    "coingecko": "darcmatter-coin",
+    "api": ["https://konstellation.anode.team"],
+    "rpc": ["*"],
+    "snapshot_provider": "",
+    "sdk_version": "0.44.5",
+    "coin_type": "118",
+    "min_tx_fee": "200",
+    "addr_prefix": "darc",
+    "logo": "/logos/konstellation.png",
+    "assets": [{
+        "base": "udarc",
+        "symbol": "DARC",
+        "exponent": "6",
+        "coingecko_id": "darcmatter-coin",
+        "logo": "/logos/konstellation.png"
+    }]
+}
