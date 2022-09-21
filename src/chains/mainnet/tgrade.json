@@ -1,0 +1,19 @@
+{
+    "chain_name": "tgrade",
+    "coingecko": "tgrade",
+    "api": ["https://tgrade.anode.team"],
+    "rpc": ["*"],
+    "snapshot_provider": "",
+    "sdk_version": "0.44.5",
+    "coin_type": "118",
+    "min_tx_fee": "200",
+    "addr_prefix": "tgrade",
+    "logo": "/logos/tgrade.png",
+    "assets": [{
+        "base": "utgd",
+        "symbol": "TGD",
+        "exponent": "6",
+        "coingecko_id": "tgrade",
+        "logo": "/logos/tgrade.png"
+    }]
+}

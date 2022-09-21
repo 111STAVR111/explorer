@@ -1,0 +1,19 @@
+{
+    "chain_name": "Mises",
+    "coingecko": "",
+    "api": ["https://mises.anode.team"],
+    "rpc": ["*"],
+    "snapshot_provider": "",
+    "sdk_version": "0.44.5",
+    "coin_type": "118",
+    "min_tx_fee": "200",
+    "addr_prefix": "mises",
+    "logo": "/logos/mises.png",
+    "assets": [{
+        "base": "umis",
+        "symbol": "MIS",
+        "exponent": "6",
+        "coingecko_id": "",
+        "logo": "/logos/mises.png"
+    }]
+}
