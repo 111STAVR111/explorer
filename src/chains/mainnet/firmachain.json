@@ -1,0 +1,19 @@
+{
+    "chain_name": "FirmaChain",
+    "coingecko": "firmachain",
+    "api": ["https://firmachain.anode.team"],
+    "rpc": ["*"],
+    "snapshot_provider": "",
+    "sdk_version": "0.44.5",
+    "coin_type": "7777777",
+    "min_tx_fee": "20000",
+    "addr_prefix": "firma",
+    "logo": "/logos/firmachain.png",
+    "assets": [{
+        "base": "ufct",
+        "symbol": "FCT",
+        "exponent": "6",
+        "coingecko_id": "firmachain",
+        "logo": "/logos/firmachain.png"
+    }]
+}
