@@ -2,7 +2,7 @@
   <div>
     <b-card
       v-if="pingVals && pingVals.length > 0"
-      title="❤️ Helping AlxVoy By Staking ❤️"
+      title="❤️ Helping STAVR By Staking ❤️"
       class="overflow-auto"
     >
       <b-table
@@ -308,7 +308,7 @@ export default {
   },
   computed: {
     pingVals() {
-      return this.list.filter(x => x.description.identity === 'ABE84D0AB09AB589')
+      return this.list.filter(x => x.description.identity === 'F2F91999ECCC092F')
     },
     list() {
       const tab = this.selectedStatus === 'active' ? this.validators : this.inactiveValidators
