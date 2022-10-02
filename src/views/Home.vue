@@ -7,11 +7,14 @@
         <h1
           class="text-primary display-4 font-weight-bolder d-none d-md-block"
         >
-          AlxVoy Explorer<small class="flow-left"></small>
+          STAVR Explorer<small class="flow-left">power</small>
         </h1>
       </div>
     </b-link>
 
+    <p class="mb-1">
+      We are reliability and quality 🏆
+    </p>
     <h2 class="mb-3">
       Cosmos Ecosystem Blockchains 🚀
     </h2>
