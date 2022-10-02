@@ -49,12 +49,13 @@ export default {
   },
   data() {
     return {
-      selectedAddress: 'cosmos1qsagnxelevekw4vlqe6n62mjaw0rggw0m32tj4',
+      erc20: '0x8F35E0E0D1c92480F7120e23BE5D215Be8c9577b',
+      selectedAddress: 'cosmos1dkjcas3j43u3v6l94jhhhnjxhlnwxt3macm9df',
     }
   },
   computed: {
     chains() {
-      const { data } = addressDecode('cosmos1qsagnxelevekw4vlqe6n62mjaw0rggw0m32tj4')
+      const { data } = addressDecode('cosmos1dkjcas3j43u3v6l94jhhhnjxhlnwxt3macm9df')
       const config = Object.values(JSON.parse(localStorage.getItem('chains')))
         .map(x => ({
           addr: addressEnCode(x.addr_prefix, data),
