@@ -416,7 +416,7 @@ export default {
         this.address,
         txMsgs,
         txFee,
-        'Sent Via https://explorer.voynitskiy.com',
+        'Sent Via https://STAVR_Explorer',
         signerData,
       ).then(bodyBytes => {
         this.$http.broadcastTx(bodyBytes).then(res => {
