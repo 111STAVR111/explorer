@@ -19,27 +19,27 @@ function processMenu() {
       title: 'blockchains',
       children: blockchains,
       tag: `${blockchains.length}`,
-      icon: 'https://explorer.voynitskiy.com/logo.svg',
+      icon: 'https://avatars.githubusercontent.com/u/44331529?s=400&u=50afd2026f130415e8d2e2e3a94d37d2390820db&v=4',
     })
   }
   chainMenus.push({ header: 'LINKS' })
   if (isTestnet()) {
     chainMenus.push({
-      title: 'Explorer',
-      href: 'https://explorer.voynitskiy.com',
+      title: 'STAVR Explorer',
+      href: 'http://explorer.stavr.tech',
       icon: 'ChromeIcon',
     })
   } else {
     chainMenus.push({
-      title: 'Github',
-      href: 'https://github.com/Voynitskiy',
+      title: 'Github STAVR',
+      href: 'https://github.com/obajay',
       icon: 'GithubIcon',
     })
   }
   chainMenus.push({
-    title: 'Twitter',
-    href: 'https://twitter.com/Voynitskiy',
-    icon: 'TwitterIcon',
+    title: 'Discord',
+    href: 'https://discordapp.com/users/765663833049661530',
+    icon: 'EyeIcon',
   })
 
   return chainMenus
