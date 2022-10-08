@@ -26,26 +26,71 @@
         {{ httpstatus }}: {{ httpStatusText }}
       </div>
     </b-card>
+    <b-row v-if="roundState['height/round/step']">
+      <b-col
+        lg="3"
+        sm="6"
+      >
+        <dashboard-card-horizontal
+          icon="ArrowUpCircleIcon"
+          color="danger"
+
+          :statistic="rate"
+          statistic-title="Onboard Rate"
+        />
+      </b-col>
+      <b-col
+        lg="3"
+        sm="6"
+      >
+        <dashboard-card-horizontal
+          icon="HashIcon"
+          color="success"
+          :statistic="height"
+          statistic-title="Height"
+        />
+      </b-col>
+      <b-col
+        lg="3"
+        sm="6"
+      >
+        <dashboard-card-horizontal
+          icon="RepeatIcon"
+          :statistic="round"
+          statistic-title="Round"
+        />
+      </b-col>
+      <b-col
+        lg="3"
+        sm="6"
+      >
+        <dashboard-card-horizontal
+          icon="CodeIcon"
+          color="info"
+          :statistic="step"
+          statistic-title="Step"
+        />
+      </b-col>
+    </b-row>
     <b-card v-if="roundState['height/round/step']">
       <b-card-title class="d-flex justify-content-between">
-        <span>Height/Round/Step: {{ roundState['height/round/step'] }}</span>
         <small class="text-danger">Updated at {{ format(updatetime) }}</small>
       </b-card-title>
       <div
         v-for="item in roundState.height_vote_set"
         :key="item.round"
       >
-        Round: {{ item.round }} {{ item.precommits_bit_array }}
+        Round: {{ item.round }} {{ item.prevotes_bit_array }}
         <b-card-body class="px-0">
-          <b-button
-            v-for="(pre, i) in item.precommits"
+          <b-badge
+            v-for="(pre, i) in item.prevotes"
             :key="i"
             size="sm"
             style="margin: 2px;"
             :variant="color(i, pre)"
           >
-            <small>{{ showName(i, pre) }}</small>
-          </b-button>
+            <small class="small">{{ showName(i, pre) }}</small>
+          </b-badge>
         </b-card-body>
       </div>
       <b-card-footer>
@@ -54,7 +99,7 @@
           size="sm"
         />  Proposer Signed
         <b-button
-          variant="outline-primary"
+          variant="dark"
           size="sm"
         />  Proposer Not Signed
         <b-button
@@ -62,7 +107,7 @@
           size="sm"
         /> Signed
         <b-button
-          variant="outline-secondary"
+          variant="secondary"
           size="sm"
         /> Not Signed
       </b-card-footer>
@@ -76,7 +121,10 @@
         Tips
       </h4>
       <div class="alert-body">
-        <span>If you want to change the default rpc endpoint. make sure that "https" and "CORS" are enabled on your server.</span>
+        <ul>
+          <li>This tool is useful for validators to monitor who is onboard during an upgrade</li>
+          <li>If you want to change the default rpc endpoint. make sure that "https" and "CORS" are enabled on your server.</li>
+        </ul>
       </div>
     </b-alert>
   </div>
@@ -84,7 +132,7 @@
 
 <script>
 import {
-  BAvatar, BCardFooter, BRow, BCol, BCardTitle, BAlert,
+  BAvatar, BCardFooter, BRow, BCol, BCardTitle, BAlert, BBadge,
   BCard, BCardBody, BInputGroup, BFormInput, BInputGroupAppend, BButton,
 } from 'bootstrap-vue'
 import fetch from 'node-fetch'
@@ -92,10 +140,12 @@ import {
   consensusPubkeyToHexAddress, getLocalChains, getCachedValidators, toDay,
 } from '@/libs/utils'
 import vSelect from 'vue-select'
+import DashboardCardHorizontal from './components/dashboard/DashboardCardHorizontal.vue'
 
 export default {
   components: {
     BAlert,
+    BBadge,
     BRow,
     BCol,
     BCard,
@@ -108,8 +158,8 @@ export default {
     BAvatar,
     BCardTitle,
     vSelect,
+    DashboardCardHorizontal,
   },
-
   data() {
     const chains = getLocalChains()
     return {
@@ -122,6 +172,10 @@ export default {
       positions: [],
       updatetime: new Date(),
       rpc: '',
+      height: '-',
+      round: '-',
+      step: '-',
+      rate: '-',
     }
   },
   computed: {
@@ -132,6 +186,8 @@ export default {
   created() {
     this.validators()
     this.rpc = `${this.chains[this.selected].rpc[0]}/consensus_state`
+    this.fetchPosition()
+    this.update()
     this.timer = setInterval(this.update, 6000)
   },
   beforeDestroy() {
@@ -141,11 +197,22 @@ export default {
     format: v => toDay(v, 'time'),
     color(i, txt) {
       if (i === this.roundState.proposer.index) {
-        return txt === 'nil-Vote' ? 'outline-primary' : 'primary'
+        return txt === 'nil-Vote' ? 'dark' : 'primary'
       }
-      return txt === 'nil-Vote' ? 'outline-secondary' : 'success'
+      return txt === 'nil-Vote' ? 'secondary' : 'success'
+    },
+    fetchPosition() {
+      const dumpurl = this.rpc.replace('consensus_state', 'dump_consensus_state')
+      fetch(dumpurl).then(data => {
+        this.httpstatus = data.status
+        this.httpStatusText = data.httpStatusText
+        return data.json()
+      }).then(res => {
+        this.positions = res.result.round_state.validators.validators
+      })
     },
     update() {
+      this.rate = '0%'
       this.updatetime = new Date()
       if (this.httpstatus === 200) {
         fetch(this.rpc).then(data => {
@@ -154,6 +221,20 @@ export default {
           return data.json()
         }).then(res => {
           this.roundState = res.result.round_state
+          const raw = this.roundState['height/round/step'].split('/')
+          // eslint-disable-next-line prefer-destructuring
+          this.height = raw[0]
+          // eslint-disable-next-line prefer-destructuring
+          this.round = raw[1]
+          // eslint-disable-next-line prefer-destructuring
+          this.step = raw[2]
+          // find the highest onboard rate
+          this.roundState.height_vote_set.forEach(element => {
+            const rate = Number(element.prevotes_bit_array.substring(element.prevotes_bit_array.length - 4))
+            if (rate > 0) {
+              this.rate = `${(rate * 100).toFixed()}%`
+            }
+          })
         }).catch(err => {
           this.httpstatus = 500
           this.httpStatusText = err
@@ -194,7 +275,6 @@ export default {
       return val?.description?.moniker || txt
     },
   },
-
 }
 </script>
 <style lang="scss">
